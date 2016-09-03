@@ -1,0 +1,25 @@
+{
+    "name": "pfrembot/identity",
+    "type": "library",
+    "description": "Library for generating consistent unique identities",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Pfrembot\\Identity\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pfrembot\\Identity\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "ramsey/uuid": "^3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
