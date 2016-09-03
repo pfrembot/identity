@@ -16,9 +16,16 @@ interface IdentityStrategyInterface
     /**
      * Return the next ID
      *
-     * @return int|string
+     * @return mixed
      */
     public function next();
+
+    /**
+     * Return the current ID
+     *
+     * @return mixed
+     */
+    public function current();
 
     /**
      * Increment Identity

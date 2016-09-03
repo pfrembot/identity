@@ -40,4 +40,18 @@ class AbstractIdentityStrategyTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('123', (string) $strategy);
     }
+
+    public function testCurrent()
+    {
+        /** @var AbstractIdentityStrategy|MockObject $strategy */
+        $strategy = $this->getMockForAbstractClass(AbstractIdentityStrategy::class);
+
+        $strategy->expects($this->once())->method('next')->willReturn('123');
+
+        $this->assertEquals(null, $strategy->current());
+
+        $strategy();
+
+        $this->assertEquals('123', $strategy->current());
+    }
 }

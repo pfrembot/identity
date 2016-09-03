@@ -14,9 +14,17 @@ namespace Pfrembot\Identity;
 abstract class AbstractIdentityStrategy implements IdentityStrategyInterface
 {
     /**
-     * @var string|int
+     * @var mixed
      */
     protected $currentId;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function current()
+    {
+        return $this->currentId;
+    }
 
     /**
      * {@inheritdoc}
@@ -33,6 +41,6 @@ abstract class AbstractIdentityStrategy implements IdentityStrategyInterface
      */
     public function __toString()
     {
-        return (string) $this->currentId;
+        return (string) $this->current();
     }
 }
