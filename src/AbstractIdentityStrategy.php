@@ -23,6 +23,10 @@ abstract class AbstractIdentityStrategy implements IdentityStrategyInterface
      */
     public function current()
     {
+        if (!isset($this->currentId)) {
+            $this->currentId = $this->next();
+        }
+
         return $this->currentId;
     }
 

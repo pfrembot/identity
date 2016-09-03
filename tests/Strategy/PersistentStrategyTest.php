@@ -48,6 +48,19 @@ class PersistentStrategyTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(3, $strategy->next());
     }
 
+    public function testCurrent()
+    {
+        $internal = new IncrementalStrategy();
+        $strategy = new PersistentStrategy($internal);
+
+        $this->assertEquals(0, $strategy->current());
+
+        $strategy->next();
+        $this->assertEquals(1, $strategy->current());
+        $this->assertEquals(2, $strategy->next());
+        $this->assertEquals(3, $strategy->next());
+    }
+
     public function testPersistence()
     {
         $internal = new IncrementalStrategy();

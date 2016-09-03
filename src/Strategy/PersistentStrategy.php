@@ -52,12 +52,18 @@ class PersistentStrategy extends AbstractIdentityStrategy
     }
 
     /**
-     * Return the next ID
-     *
-     * @return int|string
+     * {@inheritdoc}
      */
     public function next()
     {
         return self::$strategy->next();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function current()
+    {
+        return self::$strategy->current();
     }
 }

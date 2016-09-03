@@ -32,13 +32,16 @@ class AbstractIdentityStrategyTest extends PHPUnit_Framework_TestCase
         /** @var AbstractIdentityStrategy|MockObject $strategy */
         $strategy = $this->getMockForAbstractClass(AbstractIdentityStrategy::class);
 
-        $strategy->expects($this->once())->method('next')->willReturn('123');
+        $results = ['123', '456'];
+        $strategy->expects($this->exactly(2))->method('next')->willReturnCallback(function() use (&$results) {
+            return array_shift($results);
+        });
 
-        $this->assertEquals('', (string) $strategy);
+        $this->assertEquals('123', (string) $strategy);
 
         $strategy();
 
-        $this->assertEquals('123', (string) $strategy);
+        $this->assertEquals('456', (string) $strategy);
     }
 
     public function testCurrent()
@@ -46,12 +49,15 @@ class AbstractIdentityStrategyTest extends PHPUnit_Framework_TestCase
         /** @var AbstractIdentityStrategy|MockObject $strategy */
         $strategy = $this->getMockForAbstractClass(AbstractIdentityStrategy::class);
 
-        $strategy->expects($this->once())->method('next')->willReturn('123');
+        $results = ['123', '456'];
+        $strategy->expects($this->exactly(2))->method('next')->willReturnCallback(function() use (&$results) {
+            return array_shift($results);
+        });
 
-        $this->assertEquals(null, $strategy->current());
+        $this->assertEquals('123', $strategy->current());
 
         $strategy();
 
-        $this->assertEquals('123', $strategy->current());
+        $this->assertEquals('456', $strategy->current());
     }
 }

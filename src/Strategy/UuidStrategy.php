@@ -36,11 +36,21 @@ class UuidStrategy extends AbstractIdentityStrategy
     }
 
     /**
-     * Return the next ID
-     *
-     * @return int|string
+     * {@inheritdoc}
      */
     public function next()
+    {
+        $this->currentId = $this->getUuid();
+
+        return $this->currentId;
+    }
+
+    /**
+     * Generate and return a new UUID
+     *
+     * @return string
+     */
+    private function getUuid()
     {
         switch ($this->version) {
             case self::VERSION_1:
