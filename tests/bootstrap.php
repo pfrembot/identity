@@ -9,8 +9,6 @@
  * PHPUnit Bootstrap
  *
  * Registers the Composer autoloader
- *
- * @package PHPWeely
  */
 call_user_func(function() {
     if (!is_file($autoloadFile = __DIR__.'/../vendor/autoload.php')) {
