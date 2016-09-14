@@ -7,6 +7,7 @@
 namespace Pfrembot\Identity\Strategy;
 
 use Pfrembot\Identity\AbstractIdentityStrategy;
+use Pfrembot\Identity\IdentityStrategyInterface;
 
 /**
  * Class PersistentStrategy
@@ -16,21 +17,21 @@ use Pfrembot\Identity\AbstractIdentityStrategy;
 class PersistentStrategy extends AbstractIdentityStrategy
 {
     /**
-     * @var AbstractIdentityStrategy
+     * @var IdentityStrategyInterface
      */
     private static $strategy;
 
     /**
-     * @var AbstractIdentityStrategy
+     * @var IdentityStrategyInterface
      */
     private static $original;
 
     /**
      * PersistentStrategy constructor
      *
-     * @param AbstractIdentityStrategy $strategy
+     * @param IdentityStrategyInterface $strategy
      */
-    public function __construct(AbstractIdentityStrategy $strategy)
+    public function __construct(IdentityStrategyInterface $strategy)
     {
         self::$strategy = self::$strategy ?: $strategy;
         self::$original = self::$original ?: clone $strategy;
@@ -40,10 +41,10 @@ class PersistentStrategy extends AbstractIdentityStrategy
      * Reset the internally persisted strategy and optionally
      * provide a new internal strategy to use
      *
-     * @param AbstractIdentityStrategy|null $strategy
+     * @param IdentityStrategyInterface|null $strategy
      * @return $this
      */
-    public function reset(AbstractIdentityStrategy $strategy = null)
+    public function reset(IdentityStrategyInterface $strategy = null)
     {
         self::$strategy = $strategy ?: clone self::$original;
         self::$original = $strategy ?: self::$original;
